@@ -1,0 +1,83 @@
+{%extends 'webapp/base.html'%}
+{%load static%}
+{%block title%}Anil Dhakal | Contact{%endblock%}
+
+{%block body%}
+	{%include 'webapp/navbar.html'%}
+	<div class="container my-3">
+		<div class="row pt-5">
+			<div class="col-md-4 mt-2 contact-item">
+				<div class="card text-center">
+					<div class="card-body">
+						<div class="h3 contact-icon"><span class="fa fa-map-marker"></span></div>
+						<div class="h3 contact-title">Location</div>
+						<div class="contact-detail">Province State-03, Kathmandu, Nepal</div>
+						<div class="contact-detail">Province State-02, Simara, Nepal</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 mt-2 contact-item">
+				<div class="card text-center">
+					<div class="card-body">
+						<div class="h3 contact-icon"><span class="fa fa-phone"></span></div>
+						<div class="h3 contact-title">Phone</div>
+						<div class="contact-detail">+977-9845713027</div>
+						<div class="contact-detail">+977-9808777820</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 mt-2 contact-item">
+				<div class="card text-center">
+					<div class="card-body">
+						<div class="h3 contact-icon"><span class="fa fa-envelope"></span></div>
+						<div class="h3 contact-title">Email Address</div>
+						<div class="contact-detail">aneildhakal21@gmail.com</div>
+						<div class="contact-detail">072bex451@pcampus.edu.np</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="home-headings mt-5 h3">Send Me a Feedback</div>
+			<div class="row">
+				<div class="col-md-8">	
+					{% if messages %}
+					<div id="contact-message">
+					    {% for message in messages %}
+					    <div class="alert alert-success alert-dismissible fade show" role="alert">
+						    <strong>Sucessful!</strong> {{message}}
+						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						        <span aria-hidden="true">&times;</span>
+						    </button>
+						</div>
+					    {% endfor %}
+					</div>
+					{% endif %}
+
+					{%if errors%}
+						{%for error in errors%}
+						<ul>
+							<li class="text-danger">{{error}}</li>
+						</ul>
+						{%endfor%}
+					{%endif%}
+					<form method="post" id="contact-form">
+						{%csrf_token%}
+						<div class="row justify-content-between">
+							<div class="col-md-6 my-1">
+								<input type="text" name="name" class="form-control" placeholder="Full name">
+							</div>
+							<div class="col-md-6 my-1">
+								<input type="email" name="email" class="form-control" placeholder="Email address" required>
+							</div>
+						</div>
+						<div class="my-2">
+							<textarea class="form-control" name="message" placeholder="Write a message!" required></textarea>
+						</div>
+						<button class="btn btn-block btn-outline-warning my-2">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{%endblock%}
